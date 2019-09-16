@@ -26,13 +26,13 @@ using namespace wci::frontend;
 enum class PascalTokenType
 {
     // Reserved words.
-    AND, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END,
-    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL, MOD, NIL, NOT,
+    AGAIN, AND, ARRAY, BEGIN, CASE, CONST, DIV, DO, DOWNTO, ELSE, END,
+    FILE, FOR, FUNCTION, GOTO, IF, IN, LABEL, LOOP, MOD, NIL, NOT,
     OF, OR, PACKED, PROCEDURE, PROGRAM, RECORD, REPEAT, SET,
-    THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH,
+    THEN, TO, TYPE, UNTIL, VAR, WHILE, WITH, WHEN,
 
     // Special symbols.
-    PLUS, MINUS, STAR, SLASH, COLON_EQUALS,
+    BREAK_ARROW, PLUS, MINUS, STAR, SLASH, COLON_EQUALS,
     DOT, COMMA, SEMICOLON, COLON, QUOTE,
     EQUALS, NOT_EQUALS, LESS_THAN, LESS_EQUALS,
     GREATER_EQUALS, GREATER_THAN, LEFT_PAREN, RIGHT_PAREN,
@@ -43,6 +43,7 @@ enum class PascalTokenType
     ERROR, END_OF_FILE,
 };
 
+constexpr PascalTokenType PT_AGAIN = PascalTokenType::AGAIN;
 constexpr PascalTokenType PT_AND = PascalTokenType::AND;
 constexpr PascalTokenType PT_ARRAY = PascalTokenType::ARRAY;
 constexpr PascalTokenType PT_BEGIN = PascalTokenType::BEGIN;
@@ -62,6 +63,7 @@ constexpr PascalTokenType PT_IF = PascalTokenType::IF;
 constexpr PascalTokenType PT_IN = PascalTokenType::IN;
 
 constexpr PascalTokenType PT_LABEL = PascalTokenType::LABEL;
+constexpr PascalTokenType PT_LOOP = PascalTokenType::LOOP;
 constexpr PascalTokenType PT_MOD = PascalTokenType::MOD;
 constexpr PascalTokenType PT_NIL = PascalTokenType::NIL;
 constexpr PascalTokenType PT_NOT = PascalTokenType::NOT;
@@ -82,7 +84,9 @@ constexpr PascalTokenType PT_UNTIL = PascalTokenType::UNTIL;
 constexpr PascalTokenType PT_VAR = PascalTokenType::VAR;
 constexpr PascalTokenType PT_WHILE = PascalTokenType::WHILE;
 constexpr PascalTokenType PT_WITH = PascalTokenType::WITH;
+constexpr PascalTokenType PT_WHEN = PascalTokenType::WHEN;
 
+constexpr PascalTokenType PT_BREAK_ARROW = PascalTokenType::BREAK_ARROW;
 constexpr PascalTokenType PT_PLUS = PascalTokenType::PLUS;
 constexpr PascalTokenType PT_MINUS = PascalTokenType::MINUS;
 constexpr PascalTokenType PT_STAR = PascalTokenType::STAR;

@@ -27,15 +27,16 @@ void PascalToken::initialize()
 
     vector<string> rw_strings =
     {
-        "AND", "ARRAY", "BEGIN", "CASE", "CONST", "DIV", "DO", "DOWNTO",
+        "AGAIN", "AND", "ARRAY", "BEGIN", "CASE", "CONST", "DIV", "DO", "DOWNTO",
         "ELSE", "END", "FILE", "FOR", "FUNCTION", "GOTO", "IF", "IN",
-        "LABEL", "MOD", "NIL", "NOT", "OF", "OR", "PACKED", "PROCEDURE",
+        "LABEL", "LOOP", "MOD", "NIL", "NOT", "OF", "OR", "PACKED", "PROCEDURE",
         "PROGRAM", "RECORD", "REPEAT", "SET", "THEN", "TO", "TYPE",
-        "UNTIL", "VAR", "WHILE", "WITH"
+        "UNTIL", "VAR", "WHILE", "WITH", "WHEN"
     };
 
     vector<PascalTokenType> rw_keys =
     {
+        PascalTokenType::AGAIN,
         PascalTokenType::AND,
         PascalTokenType::ARRAY,
         PascalTokenType::BEGIN,
@@ -55,6 +56,7 @@ void PascalToken::initialize()
         PascalTokenType::IN,
 
         PascalTokenType::LABEL,
+        PascalTokenType::LOOP,
         PascalTokenType::MOD,
         PascalTokenType::NIL,
         PascalTokenType::NOT,
@@ -74,7 +76,8 @@ void PascalToken::initialize()
         PascalTokenType::UNTIL,
         PascalTokenType::VAR,
         PascalTokenType::WHILE,
-        PascalTokenType::WITH
+        PascalTokenType::WITH,
+        PascalTokenType::WHEN
     };
 
     for (int i = 0; i < rw_strings.size(); i++)
@@ -84,12 +87,13 @@ void PascalToken::initialize()
 
     vector<string> ss_strings =
     {
-        "+", "-", "*", "/", ":=", ".", ",", ";", ":", "'", "=", "<>",
+        "==>", "+", "-", "*", "/", ":=", ".", ",", ";", ":", "'", "=", "<>",
         "<", "<=", ">=", ">", "(", ")", "[", "]", "{", "}",  "^", ".."
     };
 
     vector<PascalTokenType> ss_keys =
     {
+        PascalTokenType::BREAK_ARROW,
         PascalTokenType::PLUS,
         PascalTokenType::MINUS,
         PascalTokenType::STAR,
@@ -124,7 +128,7 @@ void PascalToken::initialize()
 
     vector<string> ss_names =
     {
-        "PLUS", "MINUS", "STAR", "SLASH", "COLON_EQUALS", "DOT", "COMMA",
+        "BREAK_ARROW", "PLUS", "MINUS", "STAR", "SLASH", "COLON_EQUALS", "DOT", "COMMA",
         "SEMICOLON", "COLON", "QUOTE", "EQUALS", "NOT_EQUALS",
 
         "LESS_THAN", "LESS_EQUALS", "GREATER_EQUALS", "GREATER_THAN",

@@ -67,6 +67,7 @@ enum class PascalErrorCode
     MISSING_VARIABLE,
 	MISSING_AGAIN,
 	MISSING_BREAK_ARROW,
+	MISSING_WHEN,
     NOT_CONSTANT_IDENTIFIER,
     NOT_RECORD_VARIABLE,
     NOT_TYPE_IDENTIFIER,
@@ -132,6 +133,7 @@ constexpr PascalErrorCode MISSING_UNTIL = PascalErrorCode::MISSING_UNTIL;
 constexpr PascalErrorCode MISSING_VARIABLE = PascalErrorCode::MISSING_VARIABLE;
 constexpr PascalErrorCode MISSING_AGAIN = PascalErrorCode::MISSING_AGAIN;
 constexpr PascalErrorCode MISSING_BREAK_ARROW = PascalErrorCode::MISSING_BREAK_ARROW;
+constexpr PascalErrorCode MISSING_WHEN = PascalErrorCode::MISSING_WHEN;
 constexpr PascalErrorCode NOT_CONSTANT_IDENTIFIER = PascalErrorCode::NOT_CONSTANT_IDENTIFIER;
 constexpr PascalErrorCode NOT_RECORD_VARIABLE = PascalErrorCode::NOT_RECORD_VARIABLE;
 constexpr PascalErrorCode NOT_TYPE_IDENTIFIER = PascalErrorCode::NOT_TYPE_IDENTIFIER;

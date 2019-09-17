@@ -61,18 +61,13 @@ ICodeNode *LoopStatementParser::parse_statement(Token *token) throw (string)
     // Create LOOP, TEST, and NOT nodes.
     ICodeNode *loop_node =
             ICodeFactory::create_icode_node((ICodeNodeType) NT_LOOP);
-
-    ICodeNode *compound_node =
-            ICodeFactory::create_icode_node((ICodeNodeType) NT_COMPOUND);
-    loop_node->add_child(compound_node);
-
+    ICodeNode *test_node =
+            ICodeFactory::create_icode_node((ICodeNodeType) NT_TEST);
 
     while (token->get_type() != (TokenType) PT_AGAIN){
-    	//Check for When
+        //Check for When
     	if(token->get_type() == (TokenType) PT_WHEN){
     	    token = next_token(token);  // consume the WHEN
-    		ICodeNode *test_node =
-    	            ICodeFactory::create_icode_node((ICodeNodeType) NT_TEST);
     	    ExpressionParser expression_parser(this);
     	    test_node->add_child(expression_parser.parse_statement(token));
     	    loop_node->add_child(test_node);
@@ -94,10 +89,11 @@ ICodeNode *LoopStatementParser::parse_statement(Token *token) throw (string)
     	//Consume when done
     	token = next_token(token);
     }
-    //}
 
-
-
+    // ensure we have a WHEN
+    if (test_node->get_children()->size() == 0) {
+        error_handler.flag(token, MISSING_WHEN, this);
+    }
 
     // Synchronize at the AGAIN.
     token = synchronize(AGAIN_SET);
@@ -108,8 +104,6 @@ ICodeNode *LoopStatementParser::parse_statement(Token *token) throw (string)
     else {
         error_handler.flag(token, MISSING_AGAIN, this);
     }
-
-
 
     return loop_node;
 }

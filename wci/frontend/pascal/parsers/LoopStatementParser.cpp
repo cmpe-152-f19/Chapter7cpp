@@ -92,11 +92,6 @@ ICodeNode *LoopStatementParser::parse_statement(Token *token) throw (string)
     	token = next_token(token);
     }
 
-    // ensure we have a WHEN
-    if (test_node->get_children()->size() == 0) {
-        error_handler.flag(token, MISSING_WHEN, this);
-    }
-
     // Synchronize at the AGAIN.
     token = synchronize(AGAIN_SET);
     if (token->get_type() == (TokenType) PT_AGAIN)

@@ -58,7 +58,7 @@ ICodeNode *LoopStatementParser::parse_statement(Token *token) throw (string)
 {
     token = next_token(token);  // consume the Loop
 
-    // Create LOOP, TEST, and NOT nodes.
+    // Create LOOP, TEST
     ICodeNode *loop_node =
             ICodeFactory::create_icode_node((ICodeNodeType) NT_LOOP);
     ICodeNode *test_node =

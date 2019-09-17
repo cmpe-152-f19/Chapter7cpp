@@ -35,7 +35,7 @@ void LoopStatementParser::initialize()
     if (INITIALIZED) return;
 
     AGAIN_SET = StatementParser::STMT_START_SET;
-    AGAIN_SET.insert(PascalTokenType::AGAIN);
+    AGAIN_SET.insert(PT_AGAIN);
 
     EnumSet<PascalTokenType>::iterator it;
     for (it  = StatementParser::STMT_FOLLOW_SET.begin();
@@ -64,22 +64,24 @@ ICodeNode *LoopStatementParser::parse_statement(Token *token) throw (string)
     ICodeNode *test_node =
             ICodeFactory::create_icode_node((ICodeNodeType) NT_TEST);
 
-    while (token->get_type() != (TokenType) PT_AGAIN){
-        //Check for When
+    while ((token != nullptr) &&
+            token->get_type() != (TokenType) PT_END &&
+            token->get_type() != (TokenType) PT_AGAIN)
+    {
+        // Check for When
     	if(token->get_type() == (TokenType) PT_WHEN){
     	    token = next_token(token);  // consume the WHEN
     	    ExpressionParser expression_parser(this);
     	    test_node->add_child(expression_parser.parse_statement(token));
     	    loop_node->add_child(test_node);
 
-    	    //Check for Break Arrow
+    	    // Check for Break Arrow
     	    if(token->get_type() == (TokenType) PT_BREAK_ARROW){
     	    	token = next_token(token); // Consume Break arrow
     	    }
     	    else{
     	    	error_handler.flag(token, MISSING_BREAK_ARROW, this);
     	    }
-
     	}
     	else{
     		StatementParser statement_parser(this);
